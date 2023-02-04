@@ -37,6 +37,58 @@ const questions = [
         validate: userInput,
     },
     {
+        type: "list",
+        choices: [
+            {
+                name: "Apache 2.0 License",
+                value: "Apache 2.0 License, https://img.shields.io/badge/License-Apache_2.0-blue.svg"
+            },
+            {
+                name: "Boost Software License 1.0",
+                value: "Boost Software License 1.0, https://img.shields.io/badge/License-Boost_1.0-lightblue.svg",
+            },
+            {
+                name: "Eclipse Public License 1.0",
+                value: "Eclipse Public License 1.0, https://img.shields.io/badge/License-EPL_1.0-red.svg",
+            },
+            {
+                name: "IBM Public License Version 1.0",
+                value: "IBM Public License Version 1.0, https://img.shields.io/badge/License-IPL_1.0-blue.svg",
+            },
+            {
+                name: "ISC License (ISC)",
+                value: "ISC License (ISC), https://img.shields.io/badge/License-ISC-blue.svg8",
+            },
+            {
+                name: "The MIT License",
+                value: "The MIT License, https://img.shields.io/badge/License-MIT-yellow.svg",
+            },
+            {
+                name: "Mozilla",
+                value: "Mozilla, https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg",
+            },
+            {
+                name: "The Perl License",
+                value: "The Perl License, https://img.shields.io/badge/License-Perl-0298c3.svg",
+            },
+            {
+                name: "The Artistic License 2.0",
+                value: "The Artistic License 2.0, https://img.shields.io/badge/License-Artistic_2.0-0298c3.svg", 
+            },
+            {
+                name: "The Unlicense",
+                value: "The Unlicense, https://img.shields.io/badge/license-Unlicense-blue.svg",
+            },
+            {
+                name: "Zlib",
+                value: "Zlib, https://img.shields.io/badge/License-Zlib-lightgrey.svg",
+            },
+        ],
+        message: "Choose a license:",
+        name: "license",
+        validate: userInput,
+    },
+    {
         type: "input",
         message: "Enter contribution guidelines:",
         name: "contribution",
