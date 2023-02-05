@@ -1,4 +1,5 @@
 class Markdown {
+    //sets the link for the badge to show as a picture in the readme
     static renderLicenseBadge(license){
       const badge = {
         apache: '[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)',
@@ -13,6 +14,7 @@ class Markdown {
       }
       return badge[license];
     }
+    //sets the URL link for the licenses
     static renderLicenseInfo(license){
       const licenseInfo = {
         apache: `[Apache](https://opensource.org/licenses/Apache-2.0)`,
@@ -29,13 +31,15 @@ class Markdown {
       return licenseInfo[license];
 
     }
-
+//Generating the README and creating it from the answers given from the prompts
     static generateReadMe(answers){
       return `
 ${this.renderLicenseBadge(answers.license)}
 # ${answers.title}
+
 ## Description
 ${answers.description}
+
 ## Table of Contents
 - [Installation](#installation)  
 - [Usage](#usage)  
@@ -43,16 +47,22 @@ ${answers.description}
 - [Constributing](#contributing)  
 - [Tests](#tests)  
 - [Questions](#questions)
+
 ## Installation
 ${answers.install}
+
 ## Usage
 ${answers.usage}
+
 ## License
 This repository is covered under the ${this.renderLicenseInfo(answers.license)} license.
+
 ## Contributing
 ${answers.contribution}
+
 ## Tests
 ${answers.test}
+
 ## Questions
 GitHub username: ${answers.gitHub}
 GitHub profile: (https://www.github.com/${answers.gitHub})    
