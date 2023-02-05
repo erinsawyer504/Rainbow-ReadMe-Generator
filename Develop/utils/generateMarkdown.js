@@ -65,7 +65,7 @@ ${answers.contribution}
 ${answers.test}
 
 ## Questions
-GitHub username: ${answers.gitHub}
+GitHub username: ${answers.gitHub}, 
 GitHub profile: (https://www.github.com/${answers.gitHub})    
 Email address: ${answers.email}  
 If you have additional questions, please feel free to email me.`;
