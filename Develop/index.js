@@ -2,39 +2,34 @@
 const inquirer = require('inquirer');
 const fs = require("fs");
 
-// TODO: Create an array of questions for user input
-//project title
-//enter discription(Description), installation instructions (Installation), usage information(Usage), contribution guidelines, (Contributing) and test instructions(Tests)
-//choose a liscense for application from list of options
-//Badge for that liscense is added near the top of the readme and a notice is added to the section of readme (License) that explains which liscense the application is covered under
-//enter github username - added to (Questions) with link to github profile
-//enter email - added to (Questions) w insctructions on how to reach me with additional questions
-//click on links in TOC and taken to corresponding section
 
-const questions = [
+//const questions = [
+// setting up inquirer prompt to ask user questions related to readme creation
+inquirer
+    .prompt([
     {
         type: "input",
         message: "Enter project title:",
         name: "title",
-        validate: userInput,
+        validate: userInput(),
     },
     {
         type: "input",
         message: "Enter project's description",
         name: "description",
-        validate: userInput,
+        validate: userInput(),
     },
     {
         type: "input",
         message: "Enter installation instructions",
         name: "install",
-        validate: userInput,
+        validate: userInput(),
     },
     {
         type: "input",
         message: "Enter usage information:",
         name: "usage",
-        validate: userInput,
+        validate: userInput(),
     },
     {
         type: "list",
@@ -86,36 +81,75 @@ const questions = [
         ],
         message: "Choose a license:",
         name: "license",
-        validate: userInput,
+        validate: userInput(),
     },
     {
         type: "input",
         message: "Enter contribution guidelines:",
         name: "contribution",
-        validate: userInput,
+        validate: userInput(),
     },
     {
         type: "input",
         message: "Enter test instructions",
         name: "test",
-        validate: userInput,
+        validate: userInput(),
     },
     {
         type: "input",
         message: "Enter github username:",
         name: "gitHub",
-        validate: userInput,
+        validate: userInput(),
     },
     {
         type: "input",
         message: "Enter email address",
         name: "email",
-        validate: userInput,
+        validate: userInput(),
     },
+]);
 
+//Validating reponse to make sure user entered in a value
+function userInput(input){
+    if ( input === "" ){
+        console.log("Enter in a value.");
+        return false;
+    } else {
+        return true;
+    }
+}
 
+//setting up function to create readme markdown script
+function writeReadme(data) {
+    const licInfo = data.license.split(",");
+    return `
+        ![License licInfo](${licInfo[1]})  
+        # ${data.title}
+        ## Description
+        ${data.description}
+        ## Table of Contents
+        [Installation](#installation)  
+        [Usage](#usage)  
+        [License](#license)  
+        [Constributing](#contributing)  
+        [Tests](#tests)  
+        [Questions](#questions)
+        ## Installation
+        ${data.install}
+        ## Usage
+        ${data.usage}
+        ## License
+        This repository is covered under the ${licInfo[0]} license.
+        ## Contributing
+        ${data.contribution}
+        ## Tests
+        ${data.test}
+        ## Questions
+        GitHub profile: (https://www.github.com/${data.github})    
+        Email address: ${data.email}  
+        If you have additional questions, please feel free to email me.`;
+    }
 
-];
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
