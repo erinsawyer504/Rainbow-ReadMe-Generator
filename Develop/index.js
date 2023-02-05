@@ -32,6 +32,7 @@ const questions = [
         choices: ['Apache', 'Boost', 'Eclipse', 'IBM', 'ISC', 'MIT', 'Mozilla', 'zLib', 'Unlicense'],
         message: "Choose a license:",
         name: "license",
+        //changing the value to all lower case in order to match the license options in the generateMarkDown
         filter(val) {
             return val.toLowerCase();
         }
@@ -58,12 +59,12 @@ const questions = [
     }
 ];
 
-//function to prompt questions for user to answer
+//function to prompt questions for user to answer & to create the readme file in the main folder
 function promptQuestions() {
     return inquirer.prompt(questions)
         .then((answers) => {
             const mark = Markdown.generateReadMe(answers);
-            fs.writeFile('README.md', mark, function(err) {
+            fs.writeFile('../README.md', mark, function(err) {
                 if(err){
                     console.log('File not saved.');
                 } else{
@@ -78,9 +79,3 @@ function promptQuestions() {
 
 promptQuestions();
 
-
-// TODO: Create a function to initialize app
-function init() {}
-
-// Function call to initialize app
-init();
