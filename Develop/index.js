@@ -1,35 +1,35 @@
 //packages needed for this application
 const inquirer = require('inquirer');
 const fs = require("fs");
+const Markdown = require('./utils/generateMarkdown.js');
 
 
-//const questions = [
+
 // setting up inquirer prompt to ask user questions related to readme creation
-inquirer
-    .prompt([
+const questions = [
     {
         type: "input",
         message: "Enter project title:",
         name: "title",
-        validate: userInput(),
+        // validate: userInput(),
     },
     {
         type: "input",
         message: "Enter project's description",
         name: "description",
-        validate: userInput(),
+        // validate: userInput(),
     },
     {
         type: "input",
         message: "Enter installation instructions",
         name: "install",
-        validate: userInput(),
+        // validate: userInput(),
     },
     {
         type: "input",
         message: "Enter usage information:",
         name: "usage",
-        validate: userInput(),
+        // validate: userInput(),
     },
     {
         type: "list",
@@ -81,78 +81,76 @@ inquirer
         ],
         message: "Choose a license:",
         name: "license",
-        validate: userInput(),
+        // validate: userInput(),
     },
     {
         type: "input",
         message: "Enter contribution guidelines:",
         name: "contribution",
-        validate: userInput(),
+        // validate: userInput(),
     },
     {
         type: "input",
         message: "Enter test instructions",
         name: "test",
-        validate: userInput(),
+        // validate: userInput(),
     },
     {
         type: "input",
         message: "Enter github username:",
         name: "gitHub",
-        validate: userInput(),
+        // validate: userInput(),
     },
     {
         type: "input",
         message: "Enter email address",
         name: "email",
-        validate: userInput(),
+        // validate: userInput(),
     },
-]);
+];
 
 //Validating reponse to make sure user entered in a value
-function userInput(input){
-    if ( input === "" ){
-        console.log("Enter in a value.");
-        return false;
-    } else {
-        return true;
-    }
+// function userInput(input){
+//     if ( input === "" ){
+//         console.log("Enter in a value.");
+//         return false;
+//     } else {
+//         return true;
+//     }
+// }
+
+//function to prompt questions for user to answer
+function promptQuestions() {
+    return inquirer.prompt(questions)
+        .then((answers) => {
+            const mark = Markdown.generateReadMe(answers);
+            fs.writeFile('README.md', mark, function(err) {
+                if(err){
+                    console.log('File not saved.');
+                } else{
+                    console.log("README Saved");
+                }
+            });
+        })
+        .catch((error) => {
+            console.log(error)
+        })
 }
 
-//setting up function to create readme markdown script
-function writeReadMe(data) {
-    const licenseStuff = data.license.split(",");
-    return `
-        ![License licenseStuff](${licenseStuff[1]})  
-        # ${data.title}
-        ## Description
-        ${data.description}
-        ## Table of Contents
-        [Installation](#installation)  
-        [Usage](#usage)  
-        [License](#license)  
-        [Constributing](#contributing)  
-        [Tests](#tests)  
-        [Questions](#questions)
-        ## Installation
-        ${data.install}
-        ## Usage
-        ${data.usage}
-        ## License
-        This repository is covered under the ${licenseStuff[0]} license.
-        ## Contributing
-        ${data.contribution}
-        ## Tests
-        ${data.test}
-        ## Questions
-        GitHub profile: (https://www.github.com/${data.github})    
-        Email address: ${data.email}  
-        If you have additional questions, please feel free to email me.`;
-    }
+promptQuestions();
+
+
 
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    fs.writeFile(`./${fileName.toLowerCase().split(' ').join('')}.md`,data,(err)=>{
+        if(err){
+            console.log(err)
+        }
+        console.log("The README has been generated");
+    })
+}
 
 // TODO: Create a function to initialize app
 function init() {}
