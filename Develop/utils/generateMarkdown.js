@@ -53,6 +53,7 @@ ${answers.install}
 
 ## Usage
 ${answers.usage}
+![Demo of Readme App](./assets/readmeGenScreenshot.PNG)
 
 ## License
 This repository is covered under the ${this.renderLicenseInfo(answers.license)} license.
