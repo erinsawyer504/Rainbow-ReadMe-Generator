@@ -5,6 +5,11 @@
 ## Description
 This project takes the guesswork out of what to include in a readme and already formats everything in a clear and concise fashion. It includes a working TOC, along with including badges and links to the licenses that are used. I learned my way around using node js along with inquirer.  I was able to use what I learned in class to write the function to actually save information to a file.
 
+## Links
+- [Readme](https://github.com/erinsawyer504/Rainbow-ReadMe-Generator/blob/main/README.md)
+- [github repo](https://github.com/erinsawyer504/Rainbow-ReadMe-Generator)
+- [Video Demo](https://drive.google.com/file/d/1AeZbqlU1PusQssA6rreT7bdiDajDNTBj/view?usp=share_link)
+
 ## Table of Contents
 - [Installation](#installation)  
 - [Usage](#usage)  
